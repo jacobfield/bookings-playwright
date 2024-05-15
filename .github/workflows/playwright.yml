@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   schedule:
-    - cron: "0 8,20,17 * * *" # At 8am, 8pm, and 17:15 (5:15 PM) UTC
+    - cron: "0 8,20,15 * * *" # At 8am, 8pm, and 17:15 (5:15 PM) UTC
 
 jobs:
   test:
@@ -26,10 +26,13 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test tests/loginTest.spec.js
 
+      - name: Configure Git user
+        run: |
+          git config --global user.name "jacobfield"
+          git config --global user.email "jacobprogrammes@gmail.com"
+
       - name: Commit changes
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
           git add .
           git commit -m "tests run"
           git push

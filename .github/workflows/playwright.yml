@@ -26,17 +26,6 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test tests/loginTest.spec.js
 
-      - name: Configure Git user
-        run: |
-          git config --global user.name "jacobfield"
-          git config --global user.email "jacobprogrammes@gmail.com"
-
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "tests run"
-          git push
-
       - uses: actions/upload-artifact@v2
         if: always()
         with:
